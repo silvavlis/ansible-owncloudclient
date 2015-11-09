@@ -1,0 +1,16 @@
+---
+
+- name: add owncloud-client apt key for ubuntu
+  apt_key:
+    url: http://download.opensuse.org/repositories/isv:/ownCloud:/desktop/xUbuntu_{{ ansible_distribution_version }}/Release.key
+    state: present
+  become: yes
+  become_user: root
+
+- name: add owncloud-client deb repo for ubuntu
+  apt_repository:
+    repo: 'deb http://download.opensuse.org/repositories/isv:/ownCloud:/desktop/xUbuntu_{{ ansible_distribution_version }}/ /'
+    state: present
+    update_cache: yes
+  become: yes
+  become_user: root

@@ -1,0 +1,16 @@
+---
+
+- name: add ubuntu repository
+  include: "ubuntu.yml"
+  when: ansible_distribution == 'Ubuntu'
+
+- name: add debian repository
+  include: "debian.yml"
+  when: ansible_distribution == 'Debian'
+
+- name: install owncloud client
+  apt:
+    name: owncloud-client
+    state: present
+  become: yes
+  become_user: root
